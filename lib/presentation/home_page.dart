@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+
+import '../application/app_actor_notifier/app_actor_notifier_cubit.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -18,11 +21,18 @@ class HomePage extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
-            const TextField(
-              decoration: InputDecoration(labelText: 'Enter number'),
+            TextField(
+              decoration: const InputDecoration(labelText: 'Enter number'),
+              onChanged: (value) {
+                if (value.trim().isNotEmpty) {
+                  context.read<AppActorNotifierCubit>().onNumberChanged(value);
+                }
+              },
             ),
             ElevatedButton(
-              onPressed: () {},
+              onPressed: () {
+                context.read<AppActorNotifierCubit>().openWhatsappChat();
+              },
               child: const Text("Open Whatsapp"),
             )
           ],
