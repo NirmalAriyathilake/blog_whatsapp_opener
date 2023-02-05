@@ -9,7 +9,18 @@ class AppActorNotifierCubit extends Cubit<AppActorNotifierState> {
   AppActorNotifierCubit() : super(AppActorNotifierState.initial());
 
   void onNumberChanged(String value) {
-    emit(state.copyWith(number: value));
+    if (value.contains(RegExp(r"^\+[\d\s]{2,}$"))) {
+      final valueWithoutSpaces = value.replaceAll(RegExp(r"\s+"), "");
+
+      emit(state.copyWith(
+        number: valueWithoutSpaces,
+        error: '',
+      ));
+    } else {
+      emit(state.copyWith(
+        error: 'Please enter a valid number',
+      ));
+    }
   }
 
   void openWhatsappChat() {

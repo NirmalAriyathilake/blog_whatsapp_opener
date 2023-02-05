@@ -17,6 +17,7 @@ final _privateConstructorUsedError = UnsupportedError(
 /// @nodoc
 mixin _$AppActorNotifierState {
   String get number => throw _privateConstructorUsedError;
+  String get error => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $AppActorNotifierStateCopyWith<AppActorNotifierState> get copyWith =>
@@ -29,7 +30,7 @@ abstract class $AppActorNotifierStateCopyWith<$Res> {
           $Res Function(AppActorNotifierState) then) =
       _$AppActorNotifierStateCopyWithImpl<$Res, AppActorNotifierState>;
   @useResult
-  $Res call({String number});
+  $Res call({String number, String error});
 }
 
 /// @nodoc
@@ -47,11 +48,16 @@ class _$AppActorNotifierStateCopyWithImpl<$Res,
   @override
   $Res call({
     Object? number = null,
+    Object? error = null,
   }) {
     return _then(_value.copyWith(
       number: null == number
           ? _value.number
           : number // ignore: cast_nullable_to_non_nullable
+              as String,
+      error: null == error
+          ? _value.error
+          : error // ignore: cast_nullable_to_non_nullable
               as String,
     ) as $Val);
   }
@@ -65,7 +71,7 @@ abstract class _$$_AppActorNotifierStateCopyWith<$Res>
       __$$_AppActorNotifierStateCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String number});
+  $Res call({String number, String error});
 }
 
 /// @nodoc
@@ -80,11 +86,16 @@ class __$$_AppActorNotifierStateCopyWithImpl<$Res>
   @override
   $Res call({
     Object? number = null,
+    Object? error = null,
   }) {
     return _then(_$_AppActorNotifierState(
       number: null == number
           ? _value.number
           : number // ignore: cast_nullable_to_non_nullable
+              as String,
+      error: null == error
+          ? _value.error
+          : error // ignore: cast_nullable_to_non_nullable
               as String,
     ));
   }
@@ -93,14 +104,16 @@ class __$$_AppActorNotifierStateCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_AppActorNotifierState implements _AppActorNotifierState {
-  const _$_AppActorNotifierState({required this.number});
+  const _$_AppActorNotifierState({required this.number, required this.error});
 
   @override
   final String number;
+  @override
+  final String error;
 
   @override
   String toString() {
-    return 'AppActorNotifierState(number: $number)';
+    return 'AppActorNotifierState(number: $number, error: $error)';
   }
 
   @override
@@ -108,11 +121,12 @@ class _$_AppActorNotifierState implements _AppActorNotifierState {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_AppActorNotifierState &&
-            (identical(other.number, number) || other.number == number));
+            (identical(other.number, number) || other.number == number) &&
+            (identical(other.error, error) || other.error == error));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, number);
+  int get hashCode => Object.hash(runtimeType, number, error);
 
   @JsonKey(ignore: true)
   @override
@@ -123,11 +137,14 @@ class _$_AppActorNotifierState implements _AppActorNotifierState {
 }
 
 abstract class _AppActorNotifierState implements AppActorNotifierState {
-  const factory _AppActorNotifierState({required final String number}) =
-      _$_AppActorNotifierState;
+  const factory _AppActorNotifierState(
+      {required final String number,
+      required final String error}) = _$_AppActorNotifierState;
 
   @override
   String get number;
+  @override
+  String get error;
   @override
   @JsonKey(ignore: true)
   _$$_AppActorNotifierStateCopyWith<_$_AppActorNotifierState> get copyWith =>

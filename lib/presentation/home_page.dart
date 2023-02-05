@@ -22,7 +22,11 @@ class HomePage extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
             TextField(
-              decoration: const InputDecoration(labelText: 'Enter number'),
+              decoration: InputDecoration(
+                labelText: 'Enter number',
+                errorText: context
+                    .select((AppActorNotifierCubit cubit) => cubit.state.error),
+              ),
               onChanged: (value) {
                 if (value.trim().isNotEmpty) {
                   context.read<AppActorNotifierCubit>().onNumberChanged(value);
@@ -30,9 +34,12 @@ class HomePage extends StatelessWidget {
               },
             ),
             ElevatedButton(
-              onPressed: () {
-                context.read<AppActorNotifierCubit>().openWhatsappChat();
-              },
+              onPressed: context.select((AppActorNotifierCubit cubit) =>
+                      cubit.state.error.isEmpty)
+                  ? () {
+                      context.read<AppActorNotifierCubit>().openWhatsappChat();
+                    }
+                  : null,
               child: const Text("Open Whatsapp"),
             )
           ],
